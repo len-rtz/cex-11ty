@@ -1,3 +1,5 @@
+const { EleventyHtmlBasePlugin } = require("@11ty/eleventy");
+
 module.exports = function(eleventyConfig) {
   // Add JSON data support
   eleventyConfig.addDataExtension("json", contents => JSON.parse(contents));
@@ -67,12 +69,15 @@ module.exports = function(eleventyConfig) {
   // Copy images folder to output
   eleventyConfig.addPassthroughCopy("src/images");
 
+  eleventyConfig.addPlugin(EleventyHtmlBasePlugin); 
+  
   return {
+    pathPrefix: "/cex-11ty",
     dir: {
       input: "src",
       includes: "_includes",
       data: "_data",
-      output: "_site"
+      output: "_docs"
     },
     templateFormats: ["md", "njk", "html"],
     markdownTemplateEngine: "njk",
