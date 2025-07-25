@@ -1,0 +1,35 @@
+[
+  {
+    "id": "team-001",
+    "name": "Cologne Kickers",
+    "sport": "Football",
+    "division": "Senior",
+    "founded": 2020,
+    "coach": "member-003",
+    "members": ["member-001", "member-002", "member-004", "member-005"],
+    "training_sessions": ["training-001", "training-002"],
+    "description": "Our flagship senior soccer team competing in the regional league."
+  },
+  {
+    "id": "team-002", 
+    "name": "Cologne Strikers",
+    "sport": "Soccer",
+    "division": "Youth",
+    "founded": 2021,
+    "coach": "member-006",
+    "members": ["member-007", "member-008", "member-009"],
+    "training_sessions": ["training-003"],
+    "description": "Developing young talent in a supportive environment."
+  },
+  {
+    "id": "team-003",
+    "name": "Cologne Runners",
+    "sport": "Track & Field", 
+    "division": "Mixed",
+    "founded": 2022,
+    "coach": "member-010",
+    "members": ["member-011", "member-012"],
+    "training_sessions": ["training-004"],
+    "description": "Multi-event track and field team for all ages."
+  }
+]

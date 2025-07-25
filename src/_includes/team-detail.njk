@@ -1,0 +1,83 @@
+---
+# src/teams/team-detail.njk
+pagination:
+  data: teams
+  size: 1
+  alias: team
+permalink: "/teams/{{ team.id | slug }}/"
+layout: base.njk
+eleventyComputed:
+  title: "{{ team.name }}"
+---
+
+# {{ team.name }}
+
+> {{ team.description }}
+
+## Team Information
+
+- **Sport:** {{ team.sport }}
+- **Division:** {{ team.division }}
+- **Founded:** {{ team.founded }}
+
+## Coach
+
+{% set coach = (members | findById(team.coach)) %}
+{% if coach %}
+**{{ coach.name }}**  
+*{{ coach.position }}*  
+{% if coach.coaching_license %}**License:** {{ coach.coaching_license }}{% endif %}  
+**Email:** {{ coach.email }}  
+**Phone:** {{ coach.phone }}
+{% else %}
+**Coach information not available**
+{% endif %}
+
+## Team Members
+
+{% set teamMembers = (members | filterByIds(team.members)) %}
+{% if teamMembers %}
+{% for member in teamMembers %}
+- **{{ member.name }}** - {{ member.position }}
+  - Joined: {{ member.joined | formatDate }}
+  - Email: {{ member.email }}
+{% endfor %}
+{% else %}
+**No team members found**
+{% endif %}
+
+## Training Schedule
+
+{% set teamTraining = (training_sessions | filterByTeam(team.id)) %}
+{% if teamTraining %}
+{% for session in teamTraining %}
+### {{ session.title }}
+
+- **When:** {{ session.day }}s at {{ session.time | formatTime }}
+- **Duration:** {{ session.duration }} minutes
+- **Location:** {{ session.location }}
+- **Focus:** {{ session.focus }}
+- **Equipment:** {{ session.equipment | join(", ") }}
+
+{% endfor %}
+{% else %}
+**No training sessions scheduled**
+{% endif %}
+
+## Upcoming Tournaments
+
+{% set teamTournaments = tournaments | selectattr("teams", "contains", team.id) %}
+{% if teamTournaments %}
+{% for tournament in teamTournaments %}
+- **{{ tournament.name }}** - {{ tournament.date | formatDate }}
+  - Location: {{ tournament.location }}
+  - Entry Fee: ${{ tournament.entry_fee }}
+  - Status: {{ tournament.status }}
+{% endfor %}
+{% else %}
+**No upcoming tournaments scheduled**
+{% endif %}
+
+---
+
+[← Back to All Teams](/teams/)
