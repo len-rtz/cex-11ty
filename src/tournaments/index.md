@@ -6,10 +6,6 @@ permalink: "/tournaments/"
 
 # Upcoming Tournaments
 
-<!-- Debug info -->
-<p>Debug: tournaments count = {{ tournaments | length }}</p>
-<p>Debug: teams count = {{ teams | length }}</p>
-
 <table border="1">
   <thead>
     <tr>
@@ -26,15 +22,14 @@ permalink: "/tournaments/"
       <td>{{ tournament.name }}</td>
       <td>{{ tournament.location }}</td>
       <td>
-        DEBUG_START:
         {% for teamEntry in tournament.teams %}
-          {% set team = teams | findById(teamEntry.id) %}
-          Team ID: {{ teamEntry.id }} | 
-          Found team: {{ team.name if team else 'NOT FOUND' }} | 
-          Opponent: {{ teamEntry.opponent }}
-          {% if not loop.last %}<br>{% endif %}
+          {% for team in teams %}
+            {% if team.id == teamEntry.id %}
+              <a href="/teams/{{ team.id }}/">{{ team.name }}</a> vs. {{ teamEntry.opponent }}
+              {% if not loop.last %}<br>{% endif %}
+            {% endif %}
+          {% endfor %}
         {% endfor %}
-        :DEBUG_END
       </td>
     </tr>
     {% endfor %}
