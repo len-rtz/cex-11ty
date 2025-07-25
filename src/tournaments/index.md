@@ -22,16 +22,13 @@ permalink: "/tournaments/"
       <td>{{ tournament.name }}</td>
       <td>{{ tournament.location }}</td>
       <td>
-        <ul>
-          {% for teamEntry in tournament.teams %}
-          {% set team = teams | findById(teamEntry.id) %}
-          {% if team %}
-          <li>
-            <a href="/teams/{{ team.id }}/">{{ team.name }}</a> vs. {{ teamEntry.opponent }}
-          </li>
-          {% endif %}
-          {% endfor %}
-        </ul>
+        {% for teamEntry in tournament.teams %}
+        {% set team = teams | findById(teamEntry.id) %}
+        {% if team %}
+        <a href="/teams/{{ team.id }}/">{{ team.name }}</a> vs. {{ teamEntry.opponent }}
+        {% if not loop.last %}<br>{% endif %}
+        {% endif %}
+        {% endfor %}
       </td>
     </tr>
     {% endfor %}
