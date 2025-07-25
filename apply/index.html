@@ -1,0 +1,51 @@
+<!-- src/_includes/base.njk -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Membership Application</title>
+  <!-- Pico CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+</head>
+<body>
+  <header class="container">
+    <nav>
+      <ul>
+        <li><strong><a href="/cex-11ty/">Sports Club</a></strong></li>
+      </ul>
+      <ul>
+        <li><a href="/cex-11ty/about/">About</a></li>
+        <li><a href="/cex-11ty/news/">News</a></li>
+        <li><a href="/cex-11ty/teams/">Teams</a></li>
+        <li><a href="/cex-11ty/tournaments/">Tournaments</a></li>
+        <li><a href="/cex-11ty/training/">Training</a></li>
+        <li><a href="/cex-11ty/apply/" role="button">Join</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h1>Membership Application</h1>
+<form method="post" action="#">
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" required="">
+<p><label for="email">Email:</label>
+<input type="email" id="email" name="email" required=""></p>
+<p><label for="team">Preferred Team:</label>
+<select id="team" name="team"></select></p>
+<p><option value="team-001">Cologne Kickers</option></p>
+<p><option value="team-002">Cologne Strikers</option></p>
+<p><option value="team-003">Cologne Runners</option></p>
+  
+<p><button type="submit">Apply</button></p>
+</form>
+  </main>
+
+  <footer class="container">
+    <hr>
+    <a href="/cex-11ty/contact/">Contact / Impressum</a>
+    <p><small>&copy; 2025 Sports Club. All rights reserved.</small></p>
+  </footer>
+</body>
+</html>
