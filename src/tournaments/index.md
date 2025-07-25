@@ -6,7 +6,7 @@ permalink: "/tournaments/"
 
 # Upcoming Tournaments
 
-<table border="1">
+<table>
   <thead>
     <tr>
       <th>Date</th>
@@ -17,21 +17,21 @@ permalink: "/tournaments/"
   </thead>
   <tbody>
     {% for tournament in tournaments %}
-    <tr>
-      <td>{{ tournament.date }}</td>
-      <td>{{ tournament.name }}</td>
-      <td>{{ tournament.location }}</td>
-      <td>
-        {% for teamEntry in tournament.teams %}
-          {% for team in teams %}
-            {% if team.id == teamEntry.id %}
-              <a href="/teams/{{ team.id }}/">{{ team.name }}</a> vs. {{ teamEntry.opponent }}
-              {% if not loop.last %}<br>{% endif %}
-            {% endif %}
-          {% endfor %}
-        {% endfor %}
-      </td>
-    </tr>
+      <tr>
+        <td>{{ tournament.date }}</td>
+        <td>{{ tournament.name }}</td>
+        <td>{{ tournament.location }}</td>
+        <td>
+          <ul>
+            {% for teamEntry in tournament.teams %}
+              {% set team = teams | selectattr("id", "equalto", teamEntry.id) | first %}
+              <li>
+                <a href="/teams/{{ team.id }}/">{{ team.name }}</a> vs. {{ teamEntry.opponent }}
+             </li>
+            {% endfor %}
+          </ul>
+        </td>
+      </tr>
     {% endfor %}
   </tbody>
 </table>
